@@ -1,12 +1,14 @@
-import { UserController } from "../controllers/example.controller";
-import { indexRouter } from "./index.route";
+import { ExampleController } from '../controllers/Example.controller';
+import { IndexRouter } from './Index.route';
 
-export class UserRouter extends indexRouter<UserController>{
-    constructor(){
-        super(UserController)
-    }
+export class ExampleRouter extends IndexRouter<ExampleController> {
+  constructor() {
+    super(ExampleController);
+  }
 
-    routes(): void {
-        this.router.get('/user', (req, res)=>this.controller.getUsers(req, res))
-    }
+  routes(): void {
+    this.router.get('/example', (req, res) =>
+      this.controller.getExample(req, res)
+    );
+  }
 }

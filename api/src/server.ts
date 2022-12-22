@@ -1,33 +1,34 @@
-import { DataSource } from 'typeorm'
-import { App } from './app'
-import { MysqlDataSource } from './db'
+import { DataSource } from 'typeorm';
+import { App } from './app';
+import { PostgresDataSource } from './db';
 
-class Server extends App{
+class Server extends App {
+  private readonly port: number = this.getNumberEnv('PORT');
 
-    private port: number = this.getNumberEnv("PORT")
+  constructor() {
+    super();
+    void this.serverConnection();
+  }
 
-    constructor() {
-        super()
-        this.serverConnection()
-    }
-
-    async serverConnection(): Promise<DataSource | void> {
-        return MysqlDataSource.initialize()
-          .then(() => {
-            console.log("Database successfully connected!!");
-          })
-          .catch((err) => {
-            console.error(err);
-          })
-          .then(() => {
-              this.app.listen(this.port, () => {
-                  console.log(`Server is listening on port ${this.port}`)
-              })
-          })
-          .catch((err) => {
-            console.error(err);
-          });
-      }
+  // eslint-disable-next-line @typescript-eslint/no-invalid-void-type
+  async serverConnection(): Promise<DataSource | void> {
+    return await PostgresDataSource.initialize()
+      .then(() => {
+        console.log('Database successfully connected!!');
+      })
+      .catch((err) => {
+        console.error(err);
+      })
+      .then(() => {
+        this.app.listen(this.port, () => {
+          console.log(`Server is listening on port ${this.port}`);
+        });
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }
 }
 
-new Server()
+// eslint-disable-next-line no-new
+new Server();

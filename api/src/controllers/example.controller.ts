@@ -1,9 +1,9 @@
-import { Request, Response } from "express";
+import { Request, Response } from 'express';
 
-export class UserController {
-    getUsers(req: Request, res: Response) {
-        res.status(200).json({
-            message: "Mensaje de prueba",
-        })
-    }
+export class ExampleController {
+  getExample(req: Request, res: Response): void {
+    res.status(200).json({
+      message: 'Mensaje de ejemplo!'
+    });
+  }
 }

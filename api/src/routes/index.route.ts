@@ -1,15 +1,16 @@
-import { Router } from "express";
+import { Router } from 'express';
 
-export class indexRouter<T> {
-    public router: Router
-    public controller: T
-    //public middleware: Middleware
+export class IndexRouter<T> {
+  public router: Router;
+  public controller: T;
+  // public middleware: Middleware
 
-    constructor(TController: {new (): T } ) {
-        this.router = Router()
-        this.controller = new TController
-        this.routes()
-    }
+  constructor(TController: new () => T) {
+    this.router = Router();
+    this.controller = new TController();
+    this.routes();
+  }
 
-    routes(){}
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  routes(): void {}
 }

@@ -1,11 +1,10 @@
-import * as dotenv from "dotenv";
+import * as dotenv from 'dotenv';
 
 export abstract class Config {
-
   constructor() {
     const nodeNameEnv = this.createPathEnv(this.nodeEnv);
     dotenv.config({
-      path: nodeNameEnv,
+      path: nodeNameEnv
     });
   }
 
@@ -18,17 +17,17 @@ export abstract class Config {
   }
 
   public get nodeEnv(): string {
-    return this.getEnvironment("NODE_ENV")?.trim() || "";
+    // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
+    return this.getEnvironment('NODE_ENV')?.trim() ?? '';
   }
 
   public createPathEnv(path: string): string {
-    const arrEnv: Array<string> = ["env"];
+    const arrEnv: string[] = ['env'];
 
     if (path.length > 0) {
-      const stringToArray = path.split(".");
+      const stringToArray = path.split('.');
       arrEnv.unshift(...stringToArray);
     }
-    return "." + arrEnv.join(".");
+    return '.' + arrEnv.join('.');
   }
-
 }
