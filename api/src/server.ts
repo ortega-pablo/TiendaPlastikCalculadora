@@ -2,7 +2,7 @@ import { DataSource } from 'typeorm';
 import { App } from './app';
 import { PostgresDataSource } from './db';
 
-class Server extends App {
+export class Server extends App {
   private readonly port: number = this.getNumberEnv('PORT');
 
   constructor() {
