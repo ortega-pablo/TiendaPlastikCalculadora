@@ -14,7 +14,7 @@ export class App extends Config {
     this.app.use(morgan('dev'));
     this.app.use(cors());
 
-    this.app.use('./api', this.routes());
+    this.app.use('/api', this.routes());
   }
 
   routes(): express.Router[] {

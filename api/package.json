@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest --verbose --silent",
+    "test": "set NODE_OPTIONS=--experimental-vm-modules && jest --verbose --silent --detectOpenHandles",
     "start": "tsc && node dist/server.js",
-    "dev": "tsc && concurrently \"tsc -w\" \"nodemon dist/server.js\"",
+    "dev": "tsc && concurrently \"tsc -w\" \"nodemon dist/src/server.js\"",
     "lint": "eslint --fix . --ext .ts",
     "format": "prettier --write ."
   },
